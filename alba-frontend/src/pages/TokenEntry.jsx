@@ -758,9 +758,6 @@ const TokenEntry = () => {
           <div className="flex items-center justify-between px-6 py-4 bg-slate-50/60 backdrop-blur-sm border-b border-slate-200/70">
             <div>
               <h3 className="text-xl font-thin text-slate-800 tracking-wide font-serif">Token History</h3>
-              <p className="text-xs text-slate-500 mt-1 font-light">
-                💡 Click token to edit • Right-click to delete • Enter to save • Esc to cancel
-              </p>
             </div>
             <div className="flex items-center space-x-4">
               {/* Week Navigation */}

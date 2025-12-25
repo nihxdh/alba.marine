@@ -184,3 +184,315 @@
     display: none !important;
   }
 }
+
+/* Print / A4 weekly payout styles */
+.weekly-payout-statement {
+  margin: 0 auto;
+  max-width: 210mm;
+  background: #ffffff;
+  padding: 16mm 18mm;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 9px;
+  line-height: 1.3;
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.08);
+}
+
+.wp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6mm;
+  margin-bottom: 5mm;
+}
+
+.wp-header__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.wp-logo {
+  max-height: 18mm;
+  width: auto;
+  margin-bottom: 2mm;
+}
+
+.wp-header__title h1 {
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-align: left;
+  margin: 0;
+}
+
+.wp-header__meta {
+  text-align: right;
+  font-size: 10px;
+}
+
+.wp-header__week {
+  font-weight: 600;
+  margin-bottom: 1mm;
+}
+
+.wp-header__date {
+  color: #6b7280;
+}
+
+.wp-section {
+  margin-bottom: 5mm;
+}
+
+.wp-section h2 {
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 2mm;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.wp-section--table {
+  page-break-inside: avoid;
+}
+
+.wp-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 8px;
+  margin-bottom: 4mm;
+}
+
+.wp-table thead tr {
+  border-bottom: 2px solid #9ca3af;
+  background-color: #f9fafb;
+}
+
+.wp-table th,
+.wp-table td {
+  padding: 1.5mm 0.8mm;
+  text-align: center;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wp-table th:last-child,
+.wp-table td:last-child {
+  border-right: none;
+}
+
+.wp-table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 7px;
+}
+
+.wp-th-id {
+  width: 12mm;
+  text-align: left;
+  padding-left: 1mm;
+}
+
+.wp-th-name {
+  width: 25mm;
+  text-align: left;
+  padding-left: 1mm;
+}
+
+.wp-th-day {
+  width: 8mm;
+  min-width: 8mm;
+}
+
+.wp-th-day-name {
+  font-size: 6px;
+  font-weight: 700;
+  margin-bottom: 0.5mm;
+}
+
+.wp-th-day-date {
+  font-size: 6px;
+  opacity: 0.8;
+}
+
+.wp-th-holiday {
+  font-size: 5px;
+  color: #3b82f6;
+  margin-top: 0.5mm;
+}
+
+.wp-th-sunday {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.wp-th-total {
+  width: 12mm;
+  font-weight: 700;
+}
+
+.wp-td-id {
+  width: 12mm;
+  text-align: left;
+  padding-left: 1mm;
+  font-size: 7px;
+  font-family: monospace;
+}
+
+.wp-td-name {
+  width: 25mm;
+  text-align: left;
+  padding-left: 1mm;
+  font-size: 8px;
+  font-weight: 500;
+}
+
+.wp-td-day {
+  width: 8mm;
+  min-width: 8mm;
+  position: relative;
+}
+
+.wp-td-sunday {
+  background-color: #eff6ff;
+}
+
+.wp-token-value {
+  font-size: 8px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 0.5mm 1mm;
+  border-radius: 2px;
+  min-width: 4mm;
+}
+
+.wp-token-total {
+  font-weight: 700;
+  background-color: #f3f4f6;
+}
+
+.wp-bata-indicator {
+  position: absolute;
+  top: -1mm;
+  right: -1mm;
+  width: 3mm;
+  height: 3mm;
+  background-color: #f97316;
+  color: white;
+  border-radius: 50%;
+  font-size: 5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.wp-td-total {
+  width: 12mm;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.wp-td-total-amount {
+  font-weight: 700;
+  color: #111827;
+}
+
+.wp-tr-border {
+  border-top: 1px solid #e5e7eb;
+}
+
+.wp-tr-total {
+  background-color: #f9fafb;
+  border-top: 2px solid #9ca3af;
+  font-weight: 700;
+}
+
+.wp-td-total-label {
+  font-weight: 700;
+  font-size: 9px;
+}
+
+.wp-section--summary {
+  page-break-inside: avoid;
+}
+
+.wp-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3mm;
+  margin-top: 3mm;
+}
+
+.wp-summary-card {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 2mm;
+  padding: 3mm;
+  text-align: center;
+}
+
+.wp-summary-card-total {
+  background-color: #fef3c7;
+  border-color: #fbbf24;
+  grid-column: span 3;
+}
+
+.wp-summary-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1mm;
+}
+
+.wp-summary-label {
+  font-size: 7px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wp-footer {
+  margin-top: 8mm;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 4mm;
+}
+
+.wp-footer__company {
+  font-weight: 500;
+  font-size: 10px;
+}
+
+@media print {
+  .weekly-payout-statement {
+    box-shadow: none;
+  }
+
+  .wp-table {
+    page-break-inside: auto;
+  }
+
+  .wp-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .wp-section {
+    page-break-inside: avoid;
+  }
+
+  header.wp-header {
+    page-break-after: avoid;
+  }
+
+  footer.wp-footer {
+    page-break-inside: avoid;
+    page-break-after: always;
+  }
+}

@@ -83,7 +83,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 ml-16" style={{ backgroundColor: '#FEFEFE' }}>
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:ml-16 py-8 md:py-0" style={{ backgroundColor: '#FEFEFE' }}>
       {/* Notification Toast */}
       {notification && (
         <div className={`fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg transition-all duration-300 ${
@@ -106,11 +106,11 @@ const Login = () => {
       )}
 
       {/* Logo */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8 md:mb-12 w-full md:w-auto">
         <img 
           src={albaMarineLogo} 
           alt="ALBA MARINE" 
-          className="mx-auto max-w-lg w-full h-auto"
+          className="mx-auto max-w-xs md:max-w-lg w-full h-auto"
         />
       </div>
 

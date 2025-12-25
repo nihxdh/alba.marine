@@ -492,7 +492,117 @@ const WeeklyPayout = () => {
   };
 
   const handlePrint = () => {
-    window.print();
+    // Prepare payout data for print
+    const weekDates = getCurrentWeekDates(currentWeekOffset)
+    
+    // Build employee data with daily tokens
+    const employeeData = employees.map(employee => {
+      const dailyTokens = {}
+      weekDates.forEach(date => {
+        const tokens = getTokenForEmployeeAndDate(employee._id, date)
+        const bata = getBataForEmployeeAndDate(employee._id, date)
+        dailyTokens[date] = { tokens, bata }
+      })
+      
+      const weeklyTotal = weekDates.reduce((sum, date) => 
+        sum + getTokenForEmployeeAndDate(employee._id, date), 0
+      )
+      
+      const onamBata = (() => {
+        if (!employee.onamBata) return 0
+        const workingDays = weekDates.filter(date => {
+          const tokens = getTokenForEmployeeAndDate(employee._id, date)
+          return tokens > 0
+        }).length
+        return Math.round(employee.onamBata * workingDays)
+      })()
+      
+      const netTotal = weekDates.reduce((sum, date) => 
+        sum + getNetTokensForEmployeeAndDate(employee._id, date), 0
+      )
+      
+      const morningBataDays = weekDates.filter(date => 
+        getBataForEmployeeAndDate(employee._id, date)
+      ).length
+      
+      return {
+        _id: employee._id,
+        employeeId: employee.employeeId,
+        name: employee.name,
+        dailyTokens,
+        weeklyTotal,
+        onamBata,
+        netTotal,
+        morningBataDays
+      }
+    })
+    
+    // Calculate summary
+    const summary = {
+      employeeCount: employees.length,
+      weeklyTotal: employees.reduce((total, employee) => {
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        return total + weekDates.reduce((sum, date) => 
+          sum + getTokenForEmployeeAndDate(employee._id, date), 0
+        )
+      }, 0),
+      onamBataTotal: Math.round(employees.reduce((total, employee) => {
+        if (!employee.onamBata) return total
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        const workingDays = weekDates.filter(date => {
+          const tokens = getTokenForEmployeeAndDate(employee._id, date)
+          return tokens > 0
+        }).length
+        return total + (employee.onamBata * workingDays)
+      }, 0)),
+      netTotal: employees.reduce((total, employee) => {
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        return total + weekDates.reduce((sum, date) => 
+          sum + getNetTokensForEmployeeAndDate(employee._id, date), 0
+        )
+      }, 0),
+      netTotalAmount: employees.reduce((total, employee) => {
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        const netTotal = weekDates.reduce((sum, date) => 
+          sum + getNetTokensForEmployeeAndDate(employee._id, date), 0
+        )
+        return total + (netTotal * 19.5)
+      }, 0),
+      morningBataDays: employees.reduce((total, employee) => {
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        return total + weekDates.filter(date => 
+          getBataForEmployeeAndDate(employee._id, date)
+        ).length
+      }, 0),
+      morningBataAmount: employees.reduce((total, employee) => {
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        const morningBataDays = weekDates.filter(date => 
+          getBataForEmployeeAndDate(employee._id, date)
+        ).length
+        return total + (morningBataDays * 17)
+      }, 0),
+      totalPayout: employees.reduce((total, employee) => {
+        const weekDates = getCurrentWeekDates(currentWeekOffset)
+        const netTotal = weekDates.reduce((sum, date) => 
+          sum + getNetTokensForEmployeeAndDate(employee._id, date), 0
+        )
+        const morningBataDays = weekDates.filter(date => 
+          getBataForEmployeeAndDate(employee._id, date)
+        ).length
+        return total + (netTotal * 19.5) + (morningBataDays * 17)
+      }, 0)
+    }
+    
+    const payoutData = {
+      employees: employeeData,
+      weekDates,
+      weekInfo: currentWeek,
+      summary
+    }
+    
+    navigate('/print/payout', {
+      state: { payoutData }
+    })
   };
 
   const handleLogout = () => {
