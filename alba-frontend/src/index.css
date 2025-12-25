@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* Print / A4 peeling statement styles */
+.print-page {
+  background: #f9fafb;
+  padding: 16px;
+}
+
+.peeling-statement {
+  margin: 0 auto;
+  max-width: 210mm;
+  background: #ffffff;
+  padding: 16mm 18mm;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.08);
+}
+
+.ps-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8mm;
+  margin-bottom: 6mm;
+}
+
+.ps-header__title h1 {
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-align: right;
+}
+
+.ps-header__meta {
+  text-align: right;
+  font-size: 11px;
+}
+
+.ps-header__shed {
+  font-weight: 500;
+  margin-bottom: 2mm;
+}
+
+.ps-header__statement {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  font-weight: 500;
+  margin-bottom: 1mm;
+}
+
+.ps-header__statement-number {
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.ps-logo {
+  max-height: 18mm;
+  width: auto;
+  margin-bottom: 1mm;
+}
+
+.ps-header__date {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.ps-section {
+  margin-bottom: 6mm;
+}
+
+.ps-section h2 {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 3mm;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ps-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 2mm;
+}
+
+.ps-grid__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ps-label {
+  font-weight: 500;
+}
+
+.ps-value {
+  font-weight: 400;
+}
+
+.ps-section--table {
+  page-break-inside: avoid;
+}
+
+.ps-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 11px;
+}
+
+.ps-table thead tr {
+  border-bottom: 1px solid #9ca3af;
+}
+
+.ps-table th,
+.ps-table td {
+  padding: 2mm 1.5mm;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ps-table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ps-footer {
+  margin-top: 10mm;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ps-footer__company {
+  font-weight: 500;
+}
+
+@page {
+  size: A4;
+  margin: 12mm 12mm 14mm 12mm;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .peeling-statement {
+    box-shadow: none;
+  }
+
+  .print-page {
+    padding: 0;
+    background: transparent;
+  }
+
+  .ps-table {
+    page-break-inside: auto;
+  }
+
+  .ps-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .ps-section {
+    page-break-inside: avoid;
+  }
+
+  header.ps-header {
+    page-break-after: avoid;
+  }
+
+  footer.ps-footer {
+    page-break-inside: avoid;
+    page-break-after: always;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
