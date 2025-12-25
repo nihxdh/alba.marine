@@ -7,6 +7,7 @@ import Billing from './pages/Billing'
 import CreateBill from './pages/CreateBill'
 import WeeklyPayout from './pages/WeeklyPayout'
 import PrintPeelingStatement from './pages/print/PrintPeelingStatement'
+import PrintWeeklyPayout from './pages/print/PrintWeeklyPayout'
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
           {/* Print Peeling Statement routes (preview + by id) */}
           <Route path="/print/peeling/preview" element={<PrintPeelingStatement />} />
           <Route path="/print/peeling/:id" element={<PrintPeelingStatement />} />
+
+          {/* Print Weekly Payout route */}
+          <Route path="/print/payout" element={<PrintWeeklyPayout />} />
         </Routes>
       </div>
     </Router>

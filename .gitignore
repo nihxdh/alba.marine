@@ -1,0 +1,25 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Env files (VERY IMPORTANT)
+.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+build/
+
+# Vite
+.vite/
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
